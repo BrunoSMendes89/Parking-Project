@@ -1,5 +1,8 @@
 package estacionamento.utilitario;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import estacionamento.negocio.Movimentacao;
 
 /**
@@ -17,9 +20,12 @@ public class EstacionamentoUtil {
 	 * @param placa Placa do veiculo
 	 * @return true se atender e false se não.
 	 */
-	public boolean validarPadraoPlaca(String placa) {
-		//TODO implementar
-		return false;
+	public static boolean validarPadraoPlaca(String placa) {
+		String padrao = "[A_Z][A_Z][A_Z]-\\d\\d\\d\\d"; //formatacao da string, A_Z qualquer letra maiúscula e \d qualquer número
+		Pattern p = Pattern.compile(padrao); //chama o compilador passando o padrão
+		Matcher m = p.matcher(placa); //passa a placa no padrão
+		
+		return m.matches(); //retorna o resultado
 	}
 	
 	/**
