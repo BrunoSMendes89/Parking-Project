@@ -1,5 +1,9 @@
 package estacionamento.utilitario;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,6 +42,33 @@ public class EstacionamentoUtil {
 	 */
 	public void calcularPagamento(Movimentacao movimentacao) {
 		//TODO implementar
+	}
+
+	/**
+	 * Recupera uma propriedade do arquivo de configuração da aplicação
+	 * configurationConnection.txt
+	 * @param propriedade
+	 * @return valor associado à propriedade
+	 */
+	public static String get(String propriedade) {
+		
+		Properties prop = new Properties();//generics já preparada pra carregar arquivos de configuração de acesso a banco através do método load
+		String valor = null;
+		
+		try {
+			prop.load(new FileInputStream("/resources/configuration.txt"));
+			valor = prop.getProperty(propriedade);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			assert false: "Configuração não carregada!";
+		}
+		
+		return valor;
+	}
+
+	public static String getDataAsString(LocalDateTime dataHoraEntrada) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
